@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react'
+import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container'
+
 import { getList } from '../../utils/data'
 
 const Homepage = () => {
@@ -10,9 +13,9 @@ const Homepage = () => {
     }, [])
 
     return (
-        <div>
-            <p>Homepage</p>
-        </div>
+        <Container>
+            <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+        </Container>
     )
 }
 

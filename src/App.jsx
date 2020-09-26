@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles'
-import { orange } from '@material-ui/core/colors'
+import { ThemeProvider } from '@material-ui/core/styles'
 
 import Homepage from './pages/homepage'
 
