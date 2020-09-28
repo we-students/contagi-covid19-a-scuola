@@ -18,6 +18,8 @@ const headerMap = {
     'Fonte': 'source',
     'Note': 'notes',
     'Aggiornamento': 'updated_at',
+    'Primo Caso': 'first_case',
+    'Provincia': 'province'
 }
 
 export const updateData = async () =>
@@ -46,34 +48,26 @@ export const getList = async () => {
         if (list[parseInt(e.gs$cell.row, 10)] === undefined) {
             list[parseInt(e.gs$cell.row, 10)] = []
         }
-        const key = headerMap[headers[parseInt(e.gs$cell.col, 10) - 1]]
+        const key = headerMap[headers[parseInt(e.gs$cell.col, 10) - 1]] ? headerMap[headers[parseInt(e.gs$cell.col, 10) - 1]] : headers[parseInt(e.gs$cell.col, 10) - 1]
         const value = (() => {
             if (key === 'is_school_closed') {
-                return e.content.$t === 'Si'
+                return e.content.$t === 'Si' || e.content.$t === 'Sì'
             }
 
             if (key === 'date') {
                 return parse(e.content.$t, 'yyyy-MM-dd', new Date())
             }
 
+            if (key === 'first_case') {
+                return e.content.$t === 'Si' || e.content.$t === 'Sì'
+
+            }
+
             return e.content.$t
         })()
+
         list[parseInt(e.gs$cell.row, 10)][key] = value
     })
-
-    console.log(list)
-
-    // for (let index = 1; index < 4; index++) {
-    //     const item = {}
-    //     const start = index * colsCount
-    //     const end = (index + 1) * colsCount
-
-    //     console.log(start, end)
-
-    //     const rowElems = entry.slice(start, end)
-    //     console.log('rowElems', rowElems)
-    //     // const element = array[index]
-    // }
-
-    return []
+    
+    return list
 }
