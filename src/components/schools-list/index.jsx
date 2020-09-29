@@ -167,7 +167,6 @@ const SchoolsList = () => {
     useEffect(() => {
         ;(async () => {
             const data = await getList()
-            console.log(data)
             setRows(data)
         })()
     }, [])

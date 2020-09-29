@@ -54,13 +54,6 @@ const comps = [
 const Homepage = () => {
     const classes = useStyles()
 
-    useEffect(() => {
-        ;(async () => {
-            const d = await getRegionInfectedSchools()
-            console.log(d)
-        })()
-    }, [])
-
     return (
         <Layout>
             <Container className={classes.root}>

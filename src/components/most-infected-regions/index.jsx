@@ -16,10 +16,11 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 275,
         minHeight: 400,
     },
-    title: {
-        fontSize: 14,
-    },
     list: {
+        '& .MuiListItem-gutters': {
+            padding: 0,
+        },
+
         '& .MuiListItemText-multiline': {
             marginTop: 0,
             marginBottom: 0,
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
             display: 'inline-block',
             color: theme.palette.primary.main,
             fontWeight: 'bold',
+            fontSize: 18,
         },
     },
 }))
@@ -57,7 +59,7 @@ const MostInferctedRegions = () => {
                     <CircularProgress />
                 ) : (
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        <Typography variant="h6" component="h3" color="textSecondary">
                             Scuole con contagi per regione
                         </Typography>
                         <List dense className={classes.list}>

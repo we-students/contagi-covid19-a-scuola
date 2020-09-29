@@ -15,9 +15,6 @@ const useStyles = makeStyles({
         minWidth: 275,
         minHeight: 400,
     },
-    title: {
-        fontSize: 14,
-    },
     pos: {
         marginBottom: 12,
     },
@@ -43,10 +40,15 @@ const InferctedRegions = () => {
                     <CircularProgress />
                 ) : (
                     <CardContent>
-                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                        <Typography variant="h6" component="h3" color="textSecondary">
                             Scuole in cui ci sono stati dei contagi
                         </Typography>
-                        <Typography variant="h4" component="h2" color="primary">
+                        <Typography
+                            variant="h2"
+                            component="h3"
+                            color="primary"
+                            style={{ fontWeight: 'bold' }}
+                        >
                             {count}
                         </Typography>
                     </CardContent>
