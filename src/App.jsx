@@ -1,32 +1,35 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { ThemeProvider } from '@material-ui/core/styles'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import Homepage from './pages/homepage'
-
 import theme from './theme'
+import { updateData } from './utils/data'
 
 import './App.css'
+import Layout from './components/layout'
 
 function App() {
+    const [loadingData, setLoadingData] = useState(true)
+
+    useEffect(() => {
+        ;(async () => {
+            await updateData()
+            setLoadingData(false)
+        })()
+    }, [])
+
     return (
         <ThemeProvider theme={theme}>
-            <Router>
-                <div>
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/about">About</Link>
-                            </li>
-                            <li>
-                                <Link to="/users">Users</Link>
-                            </li>
-                        </ul>
-                    </nav>
-
+            {loadingData ? (
+                <Layout>
+                    <div className="centered-wrapper">
+                        <CircularProgress />
+                    </div>
+                </Layout>
+            ) : (
+                <Router>
                     <Switch>
                         <Route path="/about">
                             <p>asd3</p>
@@ -38,8 +41,8 @@ function App() {
                             <Homepage />
                         </Route>
                     </Switch>
-                </div>
-            </Router>
+                </Router>
+            )}
         </ThemeProvider>
     )
 }
