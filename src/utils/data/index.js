@@ -39,7 +39,7 @@ export const getData = async () => {
 }
 
 export const getList = async () => {
-    const { entry, gs$rowCount, ...rest } = (await getData()).feed
+    const { entry } = (await getData()).feed
     const colsCount = entry.filter((row) => row.gs$cell.row === '1').length
 
     const headers = entry.slice(0, colsCount).map((row) => row.content.$t)

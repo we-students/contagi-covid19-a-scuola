@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
-import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -64,7 +62,7 @@ const MostInferctedRegions = () => {
                         </Typography>
                         <List dense className={classes.list}>
                             {data.slice(0, 4).map((reg) => (
-                                <ListItem>
+                                <ListItem key={reg.region}>
                                     <ListItemText primary={reg.region} secondary={reg.count} />
                                 </ListItem>
                             ))}

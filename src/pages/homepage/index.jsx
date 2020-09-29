@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Container from '@material-ui/core/Container'
 import { makeStyles } from '@material-ui/core/styles'
 import GridList from '@material-ui/core/GridList'
 import GridListTile from '@material-ui/core/GridListTile'
 
 import { Typography } from '@material-ui/core'
-import { getRegionInfectedSchools } from '../../utils/data'
 import Layout from '../../components/layout'
 
 import InfectedSchoolsCounter from '../../components/infected-schools-counter'
@@ -13,7 +12,7 @@ import MostInfectedRegions from '../../components/most-infected-regions'
 import CheckYourSchool from '../../components/check-your-school'
 import SchoolsList from '../../components/schools-list'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',

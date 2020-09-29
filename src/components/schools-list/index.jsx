@@ -219,7 +219,10 @@ const SchoolsList = () => {
                                             const labelId = `table-${index}`
 
                                             return (
-                                                <TableRow tabIndex={-1} key={row.name}>
+                                                <TableRow
+                                                    tabIndex={-1}
+                                                    key={`table-row-${labelId}`}
+                                                >
                                                     <TableCell
                                                         component="th"
                                                         id={labelId}

@@ -7,7 +7,6 @@ import Homepage from './pages/homepage'
 import theme from './theme'
 import { updateData } from './utils/data'
 
-import './App.css'
 import Layout from './components/layout'
 
 function App() {

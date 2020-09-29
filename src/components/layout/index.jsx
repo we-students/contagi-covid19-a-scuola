@@ -55,7 +55,7 @@ const Layout = ({ children }) => {
                             <a
                                 href="https://docs.google.com/spreadsheets/d/1E4jyxZsF6z8lJdpBWQOhpgdcB6Pn3MSuqxO6ih0_p0A/edit#gid=1130592568"
                                 target="_blank"
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                             >
                                 Google Sheet
                             </a>

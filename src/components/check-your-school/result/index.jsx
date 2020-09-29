@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
-import Autocomplete from '@material-ui/lab/Autocomplete'
 
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
@@ -14,11 +10,11 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import { CircularProgress, FormHelperText, InputLabel, MenuItem, Select } from '@material-ui/core'
+import { InputLabel, MenuItem, Select } from '@material-ui/core'
 
 import { getList } from '../../../utils/data'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         '& > *': {
             'display': 'block',
@@ -32,20 +28,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-console.log('REACT_APP_SIB_API_KEY', process.env.REACT_APP_SIB_API_KEY)
-
 const CheckYourSchoolResult = ({ school }) => {
     const classes = useStyles()
     const [open, setOpen] = useState(false)
     const [found, setFound] = useState()
-    const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState()
     const [role, setRole] = useState('student')
 
     useEffect(() => {
         if (school) {
             setOpen(true)
-            setLoading(true)
             setFound()
             ;(async () => {
                 const data = await getList()
@@ -54,7 +46,6 @@ const CheckYourSchoolResult = ({ school }) => {
                     return i.mg_code === school.COSCUO
                 })
                 setFound(f)
-                setLoading(false)
             })()
         }
     }, [school])
