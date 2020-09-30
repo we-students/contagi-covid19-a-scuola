@@ -109,12 +109,7 @@ const CheckYourSchool = () => {
             }}
         >
             <div className={classes.content}>
-                <Typography
-                    variant="h6"
-                    style={{ fontWeight: 'bold' }}
-                    className={classes.title}
-                    color="textSecondary"
-                >
+                <Typography variant="h6" style={{ fontWeight: 'bold' }} className={classes.title}>
                     Scopri adesso se ci sono stati contagi nella tua scuola
                 </Typography>
             </div>
