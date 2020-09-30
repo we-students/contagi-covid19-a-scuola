@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Typography, Paper, Container, makeStyles } from '@material-ui/core'
+import { Typography, Container, makeStyles } from '@material-ui/core'
 
 import CheckYourSchool from '../../components/check-your-school'
 import TileWithCount from '../../components/tile-with-count'
