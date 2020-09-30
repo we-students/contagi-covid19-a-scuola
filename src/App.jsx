@@ -13,7 +13,7 @@ import { updateData } from './utils/data'
 
 import theme from './theme'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     circularProgress: {
         display: 'flex',
         justifyContent: 'center',

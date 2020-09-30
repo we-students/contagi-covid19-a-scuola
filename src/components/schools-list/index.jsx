@@ -132,9 +132,7 @@ const EnhancedTableToolbar = (props) => {
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        marginTop: 10,
-        marginLeft: 5,
-        marginRight: 5,
+        marginTop: '1rem',
     },
     paper: {
         width: '100%',
@@ -191,7 +189,7 @@ const SchoolsList = () => {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} elevation={3}>
                 {rows === undefined ? (
                     <div className="centered-wrapper" style={{ padding: 30 }}>
                         <CircularProgress />

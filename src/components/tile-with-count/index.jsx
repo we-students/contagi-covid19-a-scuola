@@ -5,8 +5,14 @@ import { Typography, Box } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     tile: {
-        marginTop: '1rem',
-        width: 'calc(33.3% - 0.66rem)',
+        'marginTop': '1rem',
+        'width': 'calc(33.3% - 0.66rem)',
+        '@media screen and (max-width: 991px)': {
+            width: 'calc(50% - 0.66rem)',
+        },
+        '@media screen and (max-width: 550px)': {
+            width: 'calc(100%)',
+        },
     },
     content: {
         padding: '1.5rem',
