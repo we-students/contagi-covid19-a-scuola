@@ -32,15 +32,13 @@ const useStyles = makeStyles(() => ({
             color: 'white',
         },
     },
-    gridList: {
-        width: '100%',
-    },
     pageTitle: {
         marginBottom: 15,
         textTransform: 'uppercase',
         fontWeight: 'bold',
     },
     row: {
+        marginTop: 30,
         justifyContent: 'space-between',
         display: 'flex',
         flexDirection: 'row',
@@ -51,7 +49,7 @@ const useStyles = makeStyles(() => ({
 const Homepage = () => {
     const classes = useStyles()
 
-    const matches = useMediaQuery('(max-width:550px)')
+    const matches = useMediaQuery('(max-width:800px)')
     const [infectedSchoolsPerRegion, setInfectedSchoolsPerRegion] = useState([])
     const [infectedSchoolsPerCity, setInfectedSchoolsPerCity] = useState([])
     const [infectionSources, setInfectionSources] = useState([])
@@ -75,10 +73,10 @@ const Homepage = () => {
                     <Typography
                         className={classes.pageTitle}
                         variant={`${matches ? 'h3' : 'h2'}`}
-                        component="h3"
+                        component="h1"
                         color="primary"
                     >
-                        Contagi a scuola
+                        Contagi COVID-19 a scuola
                     </Typography>
                     <Typography color="textSecondary" className={classes.subtitle}>
                         Powered by{' '}
@@ -92,23 +90,22 @@ const Homepage = () => {
                         </Link>
                     </Typography>
                 </Box>
-                <Container>
-                    <div className={classes.row}>
-                        <TileWithCount title="Scuole con contagi" count={infectedSchoolsCount} />
-                        <TileWithList
-                            title="Scuole con contagi per regione"
-                            list={infectedSchoolsPerRegion}
-                        />
-                        <TileWithList
-                            title="Scuole con contagi per Città"
-                            list={infectedSchoolsPerCity}
-                        />
-                        <TileWithCount title="Scuole chiuse" count={infectedSchoolsClosedCount} />
-                        <TileWithList title="Sorgente del contagio" list={infectionSources} />
-                        <CheckYourSchool />
-                    </div>
-                    <SchoolsList />
-                </Container>
+
+                <div className={classes.row}>
+                    <TileWithCount title="Scuole con contagi" count={infectedSchoolsCount} />
+                    <TileWithList
+                        title="Scuole con contagi per regione"
+                        list={infectedSchoolsPerRegion}
+                    />
+                    <TileWithList
+                        title="Scuole con contagi per Città"
+                        list={infectedSchoolsPerCity}
+                    />
+                    <TileWithCount title="Scuole chiuse" count={infectedSchoolsClosedCount} />
+                    <TileWithList title="Sorgente del contagio" list={infectionSources} />
+                    <CheckYourSchool />
+                </div>
+                <SchoolsList />
             </Container>
         </Layout>
     )

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Paper, Link } from '@material-ui/core'
+import { Paper, Link, Container } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,9 +16,15 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: 40,
     },
     footer: {
-        marginTop: 30,
-        padding: '20px',
+        marginTop: 50,
+        padding: 10,
         textAlign: 'center',
+        margin: 'auto',
+    },
+    description: {},
+    disclaimer: {
+        marginTop: 30,
+        fontSize: '0.8em',
     },
 }))
 
@@ -28,17 +34,17 @@ const Layout = ({ children }) => {
     return (
         <div className={classes.root}>
             <div className={classes.container}>{children}</div>
-
+            {/* Footer */}
             <Paper className={classes.paper}>
-                <div className={classes.footer}>
-                    <p className="company-info">
+                <Container className={classes.footer}>
+                    <p className={classes.description}>
                         Questo tool si occupa di fornire a tutti gli studenti, professori e genitori
                         la possibilità di monitorare il progredire del Covid-19 all’interno delle
                         scuola italiane. Resta sempre aggiornato sui contagi da coronavirus e come
                         la tua scuola li sta gestendo!
                     </p>
 
-                    <p style={{ marginTop: 30, fontSize: 11 }}>
+                    <p className={classes.disclaimer}>
                         Le informazioni contenute in questa dashboard sono eleborazioni dei dati
                         contenuti in questo{' '}
                         <Link
@@ -49,9 +55,28 @@ const Layout = ({ children }) => {
                         >
                             Google Sheet
                         </Link>
-                        , a cura di Vittorio Nicoletta e Lorenzo Ruffino
+                        , a cura di
+                        <Link
+                            href="https://twitter.com/vi__enne"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="primary"
+                        >
+                            {' '}
+                            Vittorio Nicoletta
+                        </Link>{' '}
+                        e
+                        <Link
+                            href="https://twitter.com/Ruffino_Lorenzo"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            color="primary"
+                        >
+                            {' '}
+                            Lorenzo Ruffino
+                        </Link>
                     </p>
-                </div>
+                </Container>
             </Paper>
         </div>
     )
