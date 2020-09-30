@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -18,10 +16,27 @@ import { CircularProgress } from '@material-ui/core'
 import Results from './result'
 
 const useStyles = makeStyles((theme) => ({
+    tile: {
+        'marginTop': '1rem',
+        'backgroundColor': theme.palette.primary.main,
+        'transition': '0.2s',
+        '&:hover, &:focus': {
+            backgroundColor: theme.palette.primary.light,
+        },
+        'width': 'calc(33.3% - 0.66rem)',
+        '@media screen and (max-width: 991px)': {
+            width: 'calc(50% - 0.66rem)',
+        },
+        '@media screen and (max-width: 550px)': {
+            width: 'calc(100%)',
+        },
+    },
+    content: {
+        padding: '1.5rem',
+    },
     root: {
         minWidth: 275,
         minHeight: 400,
-        backgroundColor: theme.palette.primary.main,
     },
     button: {
         marginTop: 40,
@@ -85,24 +100,24 @@ const CheckYourSchool = () => {
     }
 
     return (
-        <Paper elevation={3}>
-            <Card
-                raised
-                className={classes.root}
-                onClick={handleClickOpen}
-                style={{ cursor: 'pointer' }}
-            >
-                <CardContent>
-                    <Typography
-                        variant="h6"
-                        style={{ fontWeight: 'bold' }}
-                        className={classes.title}
-                        color="textSecondary"
-                    >
-                        Scopri adesso se ci sono stati contagi nella tua scuola
-                    </Typography>
-                </CardContent>
-            </Card>
+        <Paper
+            elevation={3}
+            className={classes.tile}
+            onClick={handleClickOpen}
+            style={{
+                cursor: 'pointer',
+            }}
+        >
+            <div className={classes.content}>
+                <Typography
+                    variant="h6"
+                    style={{ fontWeight: 'bold' }}
+                    className={classes.title}
+                    color="textSecondary"
+                >
+                    Scopri adesso se ci sono stati contagi nella tua scuola
+                </Typography>
+            </div>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Ricerca scuola</DialogTitle>
                 <DialogContent>

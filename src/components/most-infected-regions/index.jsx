@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { List, ListItem, ListItemText } from '@material-ui/core'
-import { getRegionInfectedSchools } from '../../utils/data'
+import getRegionInfectedSchools from '../../utils/data'
 
 const useStyles = makeStyles((theme) => ({
     root: {

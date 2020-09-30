@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { Typography, Container, makeStyles } from '@material-ui/core'
+import { Typography, Link, Box, Container, makeStyles, useMediaQuery } from '@material-ui/core'
 
 import CheckYourSchool from '../../components/check-your-school'
 import TileWithCount from '../../components/tile-with-count'
@@ -22,12 +22,21 @@ const useStyles = makeStyles(() => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
+        textAlign: 'center',
+    },
+    subtitle: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        a: {
+            color: 'white',
+        },
     },
     gridList: {
         width: '100%',
     },
     pageTitle: {
-        marginBottom: 40,
+        marginBottom: 15,
         textTransform: 'uppercase',
         fontWeight: 'bold',
     },
@@ -42,6 +51,7 @@ const useStyles = makeStyles(() => ({
 const Homepage = () => {
     const classes = useStyles()
 
+    const matches = useMediaQuery('(max-width:550px)')
     const [infectedSchoolsPerRegion, setInfectedSchoolsPerRegion] = useState([])
     const [infectedSchoolsPerCity, setInfectedSchoolsPerCity] = useState([])
     const [infectionSources, setInfectionSources] = useState([])
@@ -61,15 +71,27 @@ const Homepage = () => {
     return (
         <Layout>
             <Container className={classes.root}>
-                <Typography
-                    className={classes.pageTitle}
-                    variant="h2"
-                    component="h2"
-                    color="primary"
-                >
-                    Contagi a scuola
-                </Typography>
-
+                <Box>
+                    <Typography
+                        className={classes.pageTitle}
+                        variant={`${matches ? 'h3' : 'h2'}`}
+                        component="h3"
+                        color="primary"
+                    >
+                        Contagi a scuola
+                    </Typography>
+                    <Typography color="textSecondary" className={classes.subtitle}>
+                        Powered by{' '}
+                        <Link
+                            href="https://www.westudents.it"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ marginLeft: '0.3rem' }}
+                        >
+                            WeStudents
+                        </Link>
+                    </Typography>
+                </Box>
                 <Container>
                     <div className={classes.row}>
                         <TileWithCount title="Scuole con contagi" count={infectedSchoolsCount} />
@@ -85,9 +107,8 @@ const Homepage = () => {
                         <TileWithList title="Sorgente del contagio" list={infectionSources} />
                         <CheckYourSchool />
                     </div>
+                    <SchoolsList />
                 </Container>
-
-                <SchoolsList />
             </Container>
         </Layout>
     )
