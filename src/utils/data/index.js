@@ -84,44 +84,84 @@ export const getList = async () => {
     return list
 }
 
-export const getRegionInfectedSchools = async () => {
-    if (cache.list === undefined) {
-        await getList()
-    }
-
-    if (cache.regionInfectedSchools) return cache.regionInfectedSchools
+export const getInfectedSchoolsPerRegion = async () => {
+    if (cache.list === undefined) await getList()
+    if (cache.infectedSchoolsPerRegion) return cache.infectedSchoolsPerRegion
 
     const { list } = cache
 
     const regions = list.reduce((acc, curr) => {
-        if (curr.region === undefined) return acc
-        const index = acc.findIndex(
-            (i) => i.region.trim().toLowerCase() === curr.region.trim().toLowerCase(),
-        )
+        const UNKNOWN_REGION_LABEL = 'N/A'
 
-        if (index === -1) {
-            return [...acc, { region: curr.region, count: 1 }]
-        }
+        // if region field is not present, accumulate on NA field
+        if (curr.region === undefined) curr.region = UNKNOWN_REGION_LABEL
 
-        const r = [
-            ...acc.filter((i, n) => n !== index),
-            { region: curr.region, count: acc[index].count + 1 },
-        ]
-
-        r.sort((a, b) => (a.count < b.count ? 1 : -1))
-
-        return r
+        return { ...acc, [curr.region]: acc[curr.region] ? acc[curr.region] + 1 : 1 }
     }, [])
 
-    cache.regionInfectedSchools = regions
+    const sortedRegions = Object.entries(regions)
+        .map(([desc, count]) => ({ desc, count }))
+        .sort((a, b) => (a.count < b.count ? 1 : -1))
 
-    return regions
+    cache.infectedSchoolsPerRegion = sortedRegions
+
+    return sortedRegions
 }
 
-export const getSchoolsTotalCount = async () => {
-    if (cache.list === undefined) {
-        await getList()
-    }
+export const getInfectedSchoolsPerCity = async () => {
+    if (cache.list === undefined) await getList()
+    if (cache.infectedSchoolsPerCity) return cache.infectedSchoolsPerCity
 
+    const { list } = cache
+
+    const cities = list.reduce((acc, curr) => {
+        const UNKNOWN_CITY_LABEL = 'N/A'
+
+        // if city field is not present, accumulate on NA field
+        if (curr.city === undefined) curr.city = UNKNOWN_CITY_LABEL
+
+        return { ...acc, [curr.city]: acc[curr.city] ? acc[curr.city] + 1 : 1 }
+    }, [])
+
+    const sortedCities = Object.entries(cities)
+        .map(([desc, count]) => ({ desc, count }))
+        .sort((a, b) => (a.count < b.count ? 1 : -1))
+
+    cache.getInfectedSchoolsPerCity = sortedCities
+
+    return sortedCities
+}
+
+export const getInfectedSchoolsCount = async () => {
+    if (cache.list === undefined) await getList()
     return cache.list.length
+}
+
+export const getInfectedSchoolsClosedCount = async () => {
+    if (cache.list === undefined) await getList()
+    return cache.list.filter((s) => s.is_school_closed).length
+}
+
+export const getInfectionSources = async () => {
+    if (cache.list === undefined) await getList()
+    if (cache.infectionSourced) return cache.infectionSources
+
+    const { list } = cache
+
+    const sources = list.reduce((acc, curr) => {
+        const UNKNOWN_SOURCE_LABEL = 'N/A'
+
+        // if city field is not present, accumulate on NA field
+        if (curr.category === undefined) curr.category = UNKNOWN_SOURCE_LABEL
+
+        return { ...acc, [curr.category]: acc[curr.category] ? acc[curr.category] + 1 : 1 }
+    }, [])
+
+    const sortedSources = Object.entries(sources)
+        .map(([desc, count]) => ({ desc, count }))
+        .sort((a, b) => (a.count < b.count ? 1 : -1))
+
+    cache.infectionSourced = sortedSources
+
+    return sortedSources
 }

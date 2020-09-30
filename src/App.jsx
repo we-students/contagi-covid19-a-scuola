@@ -1,16 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { ThemeProvider } from '@material-ui/core/styles'
+
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
+
 import CircularProgress from '@material-ui/core/CircularProgress'
 
 import Homepage from './pages/homepage'
-import theme from './theme'
-import { updateData } from './utils/data'
 
 import Layout from './components/layout'
 
+import { updateData } from './utils/data'
+
+import theme from './theme'
+
+const useStyles = makeStyles((theme) => ({
+    circularProgress: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        position: 'absolute',
+        width: '100vw',
+        top: 0,
+        zIndex: 1000,
+    },
+}))
+
 function App() {
     const [loadingData, setLoadingData] = useState(true)
+    const classes = useStyles()
 
     useEffect(() => {
         ;(async () => {
@@ -23,19 +41,13 @@ function App() {
         <ThemeProvider theme={theme}>
             {loadingData ? (
                 <Layout>
-                    <div className="centered-wrapper">
+                    <div className={classes.circularProgress}>
                         <CircularProgress />
                     </div>
                 </Layout>
             ) : (
                 <Router>
                     <Switch>
-                        <Route path="/about">
-                            <p>asd3</p>
-                        </Route>
-                        <Route path="/users">
-                            <p>asd2</p>
-                        </Route>
                         <Route path="/">
                             <Homepage />
                         </Route>
