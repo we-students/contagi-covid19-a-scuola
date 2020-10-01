@@ -28,7 +28,7 @@ const TileWithCount = ({ title, count }) => {
     return (
         <Paper className={classes.tile} elevation={3}>
             <div className={classes.content}>
-                <Typography variant="h6" color="white">
+                <Typography variant="h6" color="textPrimary">
                     {title}
                 </Typography>
 

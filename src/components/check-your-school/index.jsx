@@ -98,26 +98,8 @@ const CheckYourSchool = () => {
             performSearch(val)
         }, 1000)
     }
-
     return (
-        <Paper
-            elevation={3}
-            className={classes.tile}
-            onClick={handleClickOpen}
-            style={{
-                cursor: 'pointer',
-            }}
-        >
-            <div className={classes.content}>
-                <Typography
-                    variant="h6"
-                    style={{ fontWeight: 'bold' }}
-                    className={classes.title}
-                    color="textSecondary"
-                >
-                    Scopri adesso se ci sono stati contagi nella tua scuola
-                </Typography>
-            </div>
+        <>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Ricerca scuola</DialogTitle>
                 <DialogContent>
@@ -178,9 +160,28 @@ const CheckYourSchool = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+            <Paper
+                elevation={3}
+                className={classes.tile}
+                onClick={handleClickOpen}
+                style={{
+                    cursor: 'pointer',
+                }}
+            >
+                <div className={classes.content}>
+                    <Typography
+                        variant="h6"
+                        style={{ fontWeight: 'bold' }}
+                        className={classes.title}
+                        color="textSecondary"
+                    >
+                        Scopri adesso se ci sono stati contagi nella tua scuola
+                    </Typography>
+                </div>
 
-            <Results school={result} />
-        </Paper>
+                <Results school={result} />
+            </Paper>
+        </>
     )
 }
 

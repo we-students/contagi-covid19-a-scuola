@@ -1,5 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles'
-import { orange } from '@material-ui/core/colors'
+import { orange, green, red } from '@material-ui/core/colors'
 
 const theme = createMuiTheme({
     typography: {
@@ -11,6 +11,8 @@ const theme = createMuiTheme({
     },
     status: {
         danger: orange[500],
+        error: red[500],
+        success: green[500],
     },
 })
 

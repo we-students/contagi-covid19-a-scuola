@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { lighten, makeStyles } from '@material-ui/core/styles'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableHead from '@material-ui/core/TableHead'
-import TablePagination from '@material-ui/core/TablePagination'
-import TableRow from '@material-ui/core/TableRow'
-import TableSortLabel from '@material-ui/core/TableSortLabel'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
+import {
+    Typography,
+    Toolbar,
+    TableBody,
+    Table,
+    TableContainer,
+    TableHead,
+    TableCell,
+    Paper,
+    TableSortLabel,
+    TablePagination,
+    TableRow,
+    CircularProgress,
+} from '@material-ui/core'
 
-import { CircularProgress } from '@material-ui/core'
 import { getList } from '../../utils/data'
+import InformationDialog from './informationDialog'
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -130,6 +133,11 @@ const EnhancedTableToolbar = (props) => {
 }
 
 const useStyles = makeStyles((theme) => ({
+    row: {
+        '&:hover, &:focus': {
+            cursor: 'pointer',
+        },
+    },
     root: {
         width: '100%',
         marginTop: '1rem',
@@ -157,6 +165,8 @@ const useStyles = makeStyles((theme) => ({
 const SchoolsList = () => {
     const classes = useStyles()
     const [order, setOrder] = React.useState('desc')
+    const [open, setOpen] = React.useState(false)
+    const [selectedSchool, setSelectedSchool] = React.useState(undefined)
     const [orderBy, setOrderBy] = React.useState('positive_count')
     const [page, setPage] = React.useState(0)
     const [rowsPerPage, setRowsPerPage] = React.useState(10)
@@ -168,6 +178,15 @@ const SchoolsList = () => {
             setRows(data)
         })()
     }, [])
+
+    const handleOpen = (school) => {
+        setSelectedSchool(school)
+        setOpen(true)
+    }
+
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc'
@@ -196,6 +215,11 @@ const SchoolsList = () => {
                     </div>
                 ) : (
                     <>
+                        <InformationDialog
+                            selectedSchool={selectedSchool}
+                            open={open}
+                            onClose={handleClose}
+                        />
                         <EnhancedTableToolbar />
                         <TableContainer>
                             <Table
@@ -218,6 +242,9 @@ const SchoolsList = () => {
 
                                             return (
                                                 <TableRow
+                                                    hover
+                                                    className={classes.row}
+                                                    onClick={() => handleOpen(row)}
                                                     tabIndex={-1}
                                                     key={`table-row-${labelId}`}
                                                 >
