@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -43,12 +44,12 @@ const TileWithList = ({ title, list }) => {
     return (
         <Paper className={classes.tile} elevation={3}>
             <div className={classes.content}>
-                <Typography variant="h6" color="white">
+                <Typography variant="h6" color="textPrimary">
                     {title}
                 </Typography>
                 <div className={classes.list}>
-                    {list.slice(0, 3).map((reg) => (
-                        <div className={classes.listItem}>
+                    {list.slice(0, 3).map((reg, index) => (
+                        <div className={classes.listItem} key={`tile_item_${index}`}>
                             <Typography className={classes.desc} variant="h6" color="textSecondary">
                                 {reg.desc}
                             </Typography>
