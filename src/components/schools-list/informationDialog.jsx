@@ -166,7 +166,7 @@ const InformationDialog = ({ selectedSchool, onClose, ...props }) => {
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="primary">
-                    Esci
+                    Chiudi
                 </Button>
             </DialogActions>
         </Dialog>
