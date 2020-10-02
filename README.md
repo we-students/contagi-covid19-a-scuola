@@ -1,6 +1,6 @@
 # Contagi COVID-19 a scuola
 
-Questo tool si occupa di fornire a tutti gli studenti, professori e genitori la possibilità di monitorare il progredire del Covid-19 all’interno delle scuola italiane.
+[Questo tool](https://covid19.westudents.it) si occupa di fornire a tutti gli studenti, professori e genitori la possibilità di monitorare il progredire del Covid-19 all’interno delle scuola italiane.
 
 <div align="center">
     <img height="250" src="https://firebasestorage.googleapis.com/v0/b/practical-bot-198011.appspot.com/o/ws-app-public%2Fcontagi-covid19-a-scuola%2Fpreview-desktop.png?alt=media&token=956c9787-724c-487b-84a5-b8c50392e9d2">
