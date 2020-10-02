@@ -55,9 +55,7 @@ const CheckYourSchool = () => {
     const [result, setResult] = useState()
 
     useEffect(() => {
-        if (!autocompleteOpen) {
-            setSchools([])
-        }
+        if (!autocompleteOpen) setSchools([])
     }, [autocompleteOpen])
 
     const handleClickOpen = () => {
@@ -90,9 +88,7 @@ const CheckYourSchool = () => {
     const handleSearchInputChange = (e, val, reason) => {
         if (reason === 'reset') return
 
-        if (timeout) {
-            clearTimeout(timeout)
-        }
+        if (timeout) clearTimeout(timeout)
 
         timeout = setTimeout(() => {
             performSearch(val)
@@ -100,7 +96,7 @@ const CheckYourSchool = () => {
     }
     return (
         <>
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullWidth>
                 <DialogTitle id="form-dialog-title">Ricerca scuola</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -109,7 +105,6 @@ const CheckYourSchool = () => {
 
                     <Autocomplete
                         id="asynchronous-demo"
-                        style={{ width: 300 }}
                         open={autocompleteOpen}
                         onInputChange={handleSearchInputChange}
                         onOpen={() => {
